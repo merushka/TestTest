@@ -1,4 +1,4 @@
-﻿namespace WebApplication.DTOs
+﻿namespace WebApplicationTest.DTOs
 {
     public class CreateProductDto
     {

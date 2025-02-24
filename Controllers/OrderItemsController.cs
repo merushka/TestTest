@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using LinqToDB;
-using WebApplication.Data;
-using WebApplication.Models;
+using WebApplicationTest.Data;
+using WebApplicationTest.Models;
 
-namespace WebApplication.Controllers
+namespace WebApplicationTest.Controllers
 {
     [ApiController]
     [Route("orderitems")]
@@ -17,7 +17,6 @@ namespace WebApplication.Controllers
             _context = context;
         }
 
-        // DTO для создания одной позиции
         public class CreateSingleOrderItemDto
         {
             public int OrderId { get; set; }
@@ -26,13 +25,12 @@ namespace WebApplication.Controllers
             public decimal Price { get; set; }
         }
 
-        // POST /orderitems
         [HttpPost]
         public IActionResult CreateOrderItem([FromBody] CreateSingleOrderItemDto dto)
         {
             if (dto == null)
                 return BadRequest("Некорректные данные позиции заказа.");
-          
+
             var entity = new OrderItem
             {
                 OrderId = dto.OrderId,
@@ -47,7 +45,6 @@ namespace WebApplication.Controllers
             return CreatedAtAction(nameof(GetOrderItem), new { id = entity.Id }, entity);
         }
 
-        // GET /orderitems/{id}
         [HttpGet("{id}")]
         public IActionResult GetOrderItem(int id)
         {

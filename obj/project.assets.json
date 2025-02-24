@@ -5973,11 +5973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\77077\\source\\repos\\WebApplication\\WebApplication\\WebApplication.csproj",
-      "projectName": "WebApplication",
-      "projectPath": "C:\\Users\\77077\\source\\repos\\WebApplication\\WebApplication\\WebApplication.csproj",
+      "projectUniqueName": "C:\\Users\\77077\\source\\repos\\WebApplicationTest\\WebApplicationTest\\WebApplicationTest.csproj",
+      "projectName": "WebApplicationTest",
+      "projectPath": "C:\\Users\\77077\\source\\repos\\WebApplicationTest\\WebApplicationTest\\WebApplicationTest.csproj",
       "packagesPath": "C:\\Users\\77077\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\77077\\source\\repos\\WebApplication\\WebApplication\\obj\\",
+      "outputPath": "C:\\Users\\77077\\source\\repos\\WebApplicationTest\\WebApplicationTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

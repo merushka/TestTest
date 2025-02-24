@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "WebApplication.Controllers.CustomersController",
+    "ContainingType": "WebApplicationTest.Controllers.CustomersController",
     "Method": "CreateCustomer",
     "RelativePath": "customers",
     "HttpMethod": "POST",
@@ -9,14 +9,14 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "WebApplication.Controllers.CustomersController\u002BCustomerCreateDto",
+        "Type": "WebApplicationTest.Controllers.CustomersController\u002BCustomerCreateDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.CustomersController",
+    "ContainingType": "WebApplicationTest.Controllers.CustomersController",
     "Method": "GetCustomerById",
     "RelativePath": "customers/{id}",
     "HttpMethod": "GET",
@@ -32,7 +32,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.OrderItemsController",
+    "ContainingType": "WebApplicationTest.Controllers.OrderItemsController",
     "Method": "CreateOrderItem",
     "RelativePath": "orderitems",
     "HttpMethod": "POST",
@@ -41,14 +41,14 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "WebApplication.Controllers.OrderItemsController\u002BCreateSingleOrderItemDto",
+        "Type": "WebApplicationTest.Controllers.OrderItemsController\u002BCreateSingleOrderItemDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.OrderItemsController",
+    "ContainingType": "WebApplicationTest.Controllers.OrderItemsController",
     "Method": "GetOrderItem",
     "RelativePath": "orderitems/{id}",
     "HttpMethod": "GET",
@@ -64,7 +64,39 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.ProductsController",
+    "ContainingType": "WebApplicationTest.Controllers.OrderController",
+    "Method": "CreateOrder",
+    "RelativePath": "orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WebApplicationTest.DTOs.CreateOrderDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplicationTest.Controllers.OrderController",
+    "Method": "GetOrder",
+    "RelativePath": "orders/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplicationTest.Controllers.ProductsController",
     "Method": "CreateProduct",
     "RelativePath": "products",
     "HttpMethod": "POST",
@@ -73,14 +105,14 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "WebApplication.DTOs.CreateProductDto",
+        "Type": "WebApplicationTest.DTOs.CreateProductDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.ProductsController",
+    "ContainingType": "WebApplicationTest.Controllers.ProductsController",
     "Method": "GetProduct",
     "RelativePath": "products/{id}",
     "HttpMethod": "GET",
@@ -96,7 +128,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.StatisticsController",
+    "ContainingType": "WebApplicationTest.Controllers.StatisticsController",
     "Method": "GetProductStatistics",
     "RelativePath": "statistics/sales/products/{id}",
     "HttpMethod": "GET",
@@ -112,8 +144,8 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.SummaryController",
-    "Method": "GetSalesByProductIds",
+    "ContainingType": "WebApplicationTest.Controllers.SummaryController",
+    "Method": "GetSalesSummary",
     "RelativePath": "summary/sales/products",
     "HttpMethod": "POST",
     "IsController": true,
@@ -121,14 +153,14 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "WebApplication.DTOs.ProductSalesRequest",
+        "Type": "WebApplicationTest.DTOs.SalesSummaryRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication.Controllers.SummaryController",
+    "ContainingType": "WebApplicationTest.Controllers.SummaryController",
     "Method": "GetProductSalesSummary",
     "RelativePath": "summary/sales/products/{id}",
     "HttpMethod": "GET",

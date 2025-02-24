@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lOAyqVhXs+U=",
+  "dgSpecHash": "4JKwL36CtLc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\77077\\source\\repos\\WebApplication\\WebApplication\\WebApplication.csproj",
+  "projectFilePath": "C:\\Users\\77077\\source\\repos\\WebApplicationTest\\WebApplicationTest\\WebApplicationTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\77077\\.nuget\\packages\\linq2db\\5.4.1\\linq2db.5.4.1.nupkg.sha512",
     "C:\\Users\\77077\\.nuget\\packages\\linq2db.oracle.managed\\5.4.1\\linq2db.oracle.managed.5.4.1.nupkg.sha512",
