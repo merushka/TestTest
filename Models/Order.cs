@@ -17,6 +17,6 @@ namespace WebApplicationTest.Models
         public DateTime OrderDate { get; set; } = DateTime.UtcNow.AddMilliseconds(-DateTime.UtcNow.Millisecond);
 
         [Association(ThisKey = "CustomerId", OtherKey = "Id", CanBeNull = false)]
-        public Customer Customer { get; set; } = default!; 
+        public Customer Customer { get; set; } = default!; // ✅ Инициализация, чтобы избежать CS8618
     }
 }

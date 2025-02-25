@@ -27,11 +27,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-    DatabaseSeeder.SeedAll(db);
-}
+Console.WriteLine($"📌 Используемая строка подключения: {connectionString}");
+
+var db = app.Services.CreateScope().ServiceProvider.GetRequiredService<DatabaseContext>();
+
+DatabaseSeeder.SeedAll(db);
 
 if (app.Environment.IsDevelopment())
 {

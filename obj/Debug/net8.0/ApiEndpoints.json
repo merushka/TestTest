@@ -144,7 +144,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplicationTest.Controllers.SummaryController",
+    "ContainingType": "WebApplication.Controllers.SummaryController",
     "Method": "GetSalesSummary",
     "RelativePath": "summary/sales/products",
     "HttpMethod": "POST",
@@ -160,7 +160,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplicationTest.Controllers.SummaryController",
+    "ContainingType": "WebApplication.Controllers.SummaryController",
     "Method": "GetProductSalesSummary",
     "RelativePath": "summary/sales/products/{id}",
     "HttpMethod": "GET",
