@@ -71,7 +71,6 @@ public static class DatabaseSeeder
 
                 try
                 {
-                    // ✅ Добавлено детальное логирование перед вставкой
                     Console.WriteLine($"? Вставляем Customer: {customer.Name}, {customer.Email}");
 
                     var insertedId = db.InsertWithInt32Identity(customer);
@@ -82,7 +81,6 @@ public static class DatabaseSeeder
 
                     customer.Id = insertedId;
 
-                    // ✅ Добавлено логирование ID после успешной вставки
                     Console.WriteLine($"✅ Вставлен Customer ID: {customer.Id}");
 
                     if (i % 50 == 0)
@@ -195,14 +193,11 @@ public static class DatabaseSeeder
             var bigOrder1 = new Order { CustomerId = firstCustId, OrderDate = DateTime.Now };
             var bigOrder2 = new Order { CustomerId = firstCustId, OrderDate = DateTime.Now };
 
-            // ✅ Вставляем заказы и сразу получаем ID
             bigOrder1.Id = db.InsertWithInt32Identity(bigOrder1);
             bigOrder2.Id = db.InsertWithInt32Identity(bigOrder2);
 
-            // ✅ Проверяем, получены ли корректные ID
             if (bigOrder1.Id == 0 || bigOrder2.Id == 0)
             {
-                // Если вдруг ID не записались, получаем MAX(ID)
                 bigOrder1.Id = db.Orders.Max(o => o.Id);
                 bigOrder2.Id = db.Orders.Max(o => o.Id);
             }
@@ -217,7 +212,6 @@ public static class DatabaseSeeder
 
             transaction.Commit();
 
-            // ✅ Вставляем `OrderItems`
             var productIds = db.Products.Select(p => p.Id).Take(2000).ToList();
 
             for (int i = 0; i < 1000; i++)

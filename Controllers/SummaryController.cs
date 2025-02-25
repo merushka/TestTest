@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using WebApplicationTest.Data;
-using WebApplicationTest.DTOs; 
+using WebApplicationTest.DTOs;
 
-namespace WebApplicationTest.Controllers
+namespace WebApplication.Controllers
 {
     [Route("summary")]
     [ApiController]
@@ -25,14 +25,14 @@ namespace WebApplicationTest.Controllers
 
             var orders = _db.Orders
                 .Where(o => _db.OrderItems.Any(oi => oi.ProductId == id && oi.OrderId == o.Id))
-                .Join(_db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new { o, c }) 
+                .Join(_db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new { o, c })
                 .Select(joined => new
                 {
                     OrderId = joined.o.Id,
                     Count = _db.OrderItems.Where(oi => oi.OrderId == joined.o.Id && oi.ProductId == id).Sum(oi => oi.Quantity),
                     TotalPrice = _db.OrderItems.Where(oi => oi.OrderId == joined.o.Id && oi.ProductId == id)
                                                .Sum(oi => oi.Quantity * oi.Price),
-                    UserName = joined.c.Name 
+                    UserName = joined.c.Name
                 })
                 .ToList();
 
@@ -54,31 +54,22 @@ namespace WebApplicationTest.Controllers
             if (request.DateStart > request.DateEnd)
                 return BadRequest("❌ Ошибка: Неверный период. DateStart не может быть больше DateEnd.");
 
+            Console.WriteLine($"Received ProductIds: {string.Join(", ", request.ProductIds)}");
+
+            var productIds = request.ProductIds.Distinct().ToList();
+            Console.WriteLine($"Parsed ProductIds: {string.Join(", ", productIds)}");
+
             var ordersList = _db.Orders
                 .Where(o => request.DateStart <= o.OrderDate && o.OrderDate <= request.DateEnd)
-                .Where(o => _db.OrderItems.Any(oi => request.ProductIds.Contains(oi.ProductId) && oi.OrderId == o.Id))
-                .Select(o => new
-                {
-                    o.Id,
-                    o.OrderDate,
-                    o.CustomerId
-                })
-                .ToList(); 
+                .Where(o => _db.OrderItems.Any(oi => productIds.Contains(oi.ProductId) && oi.OrderId == o.Id))
+                .ToList();
 
             var orderItems = _db.OrderItems
                 .Where(oi => ordersList.Select(o => o.Id).Contains(oi.OrderId))
-                .Where(oi => request.ProductIds.Contains(oi.ProductId))
-                .Select(oi => new
-                {
-                    oi.OrderId,
-                    oi.ProductId,
-                    oi.Quantity,
-                    oi.Price
-                })
-                .ToList(); 
+                .Where(oi => productIds.Contains(oi.ProductId))
+                .ToList();
 
             var orders = ordersList
-                .ToList() 
                 .GroupBy(o => new { o.Id, o.OrderDate, o.CustomerId })
                 .Select(g => new
                 {
@@ -92,11 +83,12 @@ namespace WebApplicationTest.Controllers
                     TotalPrice = orderItems.Where(oi => oi.OrderId == g.Key.Id).Sum(oi => oi.Quantity * oi.Price),
                     Products = orderItems
                         .Where(oi => oi.OrderId == g.Key.Id)
-                        .Select(oi => new
+                        .GroupBy(oi => oi.ProductId)
+                        .Select(oiGroup => new
                         {
-                            oi.ProductId,
-                            oi.Quantity,
-                            oi.Price
+                            ProductId = oiGroup.Key,
+                            Quantity = oiGroup.Sum(oi => oi.Quantity),
+                            Price = oiGroup.First().Price
                         })
                         .ToList()
                 })
@@ -104,6 +96,7 @@ namespace WebApplicationTest.Controllers
 
             return Ok(new { Orders = orders });
         }
+
 
     }
 }
